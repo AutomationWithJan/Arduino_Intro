@@ -1,0 +1,60 @@
+//Oppretter 3 variabler for lys og 2 variabler for knapper.
+
+//Lys
+int LED1 = 13; //Int er integer. En integer er et heltall.
+int LED2 = 12;
+int LED3 = 11;
+
+//fysisk kobling knapp
+int bt11 = 8;
+int bt22 = 9;
+
+//Lagrede verdi av knapper.
+int bt1;
+int bt2;
+
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(LED1, OUTPUT); //setter LED1 som en utgang.
+  pinMode(LED2, OUTPUT); //setter LED2 som en utgang.
+  pinMode(LED3, OUTPUT); //setter LED3 som en utgang.
+
+  pinMode(bt11, INPUT); //Setter bt11 som en inngang.
+  pinMode(bt22, INPUT);//Setter bt22 som en inngang.
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  bt1 = digitalRead(bt11);  //Leser av tilstanden til knappen.
+  bt2 = digitalRead(bt22);  //Leser av tilstanden til knappen.
+
+  if (bt1 == HIGH) { //Dersom  knappen er trykt inn settes alle LED diodene på
+    digitalWrite(LED1, HIGH);
+    digitalWrite(LED2, HIGH);
+    digitalWrite(LED3, HIGH);
+  } else {         //Setter alle LED dioder av når knappen ikke er trykt inn.
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED3, LOW);
+  }
+
+  if (bt2 == HIGH) {
+    digitalWrite(LED1, HIGH);
+    digitalWrite(LED2, HIGH);
+    digitalWrite(LED3, HIGH);
+    delay(500);
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED3, LOW);
+    delay(500);
+  } else {
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED3, LOW);
+  }
+
+
+}
