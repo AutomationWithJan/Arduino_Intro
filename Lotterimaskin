@@ -1,33 +1,46 @@
+//Mine variabler
+int v;
+int knapp;
 
-int v = 0;
+//Tekststrenger for deltakere
 String tekst = "Vinneren er: ";
-String a1 = "Eirik";
-String a2 = "Espen";
-String a3 = "Pål";
-String a4 = "Per";
+String a1 = "Per";
+String a2 = "Kari";
+String a3 = "Ola";
+String a4 = "Laila";
+
 void setup() {
-// put your setup code here, to run once:
-Serial.begin(9600); //initierer kommunikasjon
+  // put your setup code here, to run once:
+  Serial.begin(9600);   //velger baudrate
 }
+
 void loop() {
-// put your main code here, to run repeatedly:
-v = random(4); //Setter en tilfeldig verdi til v
-delay(4000); 
-if(v==1){
-Serial.print(tekst);
-Serial.println(a1);
-}
-if(v==2){
-Serial.print(tekst);
-Serial.println(a2);
-}
-if(v==3){
-Serial.print(tekst);
-Serial.println(a3);
-}
-if(v==4){
-Serial.print(tekst);
-Serial.println(a4);
-}
-delay(4000); // venter med å kjøre koden på nytt
+  // put your main code here, to run repeatedly:
+
+
+  delay(500);     //delay på 500ms
+  if (Serial.available() > 0) {     //Sjekker om det er tilgjengelig data på serial kommunikasjon
+    knapp = Serial.read();           //lagrer data i knapp
+    if (knapp == 115) {               //hvis 's' er trykt inn.
+      v = random(1, 5);   //tilfeldig tall fra 1 til 4
+      if (v == 1) {
+        Serial.print(tekst);      //printer ut tekst
+        Serial.println(a1);       //Printer ut deltakter
+      } else if (v == 2) {
+        Serial.print(tekst);
+        Serial.println(a2);
+      } else if (v == 3) {
+        Serial.print(tekst);
+        Serial.println(a3);
+      } else if (v == 4) {
+        Serial.print(tekst);
+        Serial.println(a4);
+      }
+      knapp = 0;            //Setter knapp=0 for å forhindre if loop
+    } else if (knapp != 115) { //Gir tilbakemelding til brukeren om hva som skal trykkes.
+      Serial.println("Trekk en vinner ved å bruke bokstaven 's'");
+    }
+  }
+
+
 }
