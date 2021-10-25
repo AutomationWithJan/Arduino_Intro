@@ -1,0 +1,33 @@
+
+int v = 0;
+String tekst = "Vinneren er: ";
+String a1 = "Eirik";
+String a2 = "Espen";
+String a3 = "Pål";
+String a4 = "Per";
+void setup() {
+// put your setup code here, to run once:
+Serial.begin(9600); //initierer kommunikasjon
+}
+void loop() {
+// put your main code here, to run repeatedly:
+v = random(4); //Setter en tilfeldig verdi til v
+delay(4000); 
+if(v==1){
+Serial.print(tekst);
+Serial.println(a1);
+}
+if(v==2){
+Serial.print(tekst);
+Serial.println(a2);
+}
+if(v==3){
+Serial.print(tekst);
+Serial.println(a3);
+}
+if(v==4){
+Serial.print(tekst);
+Serial.println(a4);
+}
+delay(4000); // venter med å kjøre koden på nytt
+}
