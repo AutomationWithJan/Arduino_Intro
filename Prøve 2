@@ -1,0 +1,46 @@
+
+Int v = 0;
+String tekst = "Vinneren er: ";
+String a1 = "Eirik";
+String a2 = "Espen";
+String a3 = "Pål";
+String a4 = "Per";
+
+int bt;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600); 
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  if (Serial.available() > 0) {
+    bt = Serial.read();
+    if (bt == 118) {
+      v = random(1, 5); 
+      //delay(4000);
+      if (v == 1) {
+        Serial.print(tekst);
+        Serial.println(a1);
+      }
+      if (v == 2) {
+        Serial.print(tekst);
+        Serial.println(a2);
+      }
+      if (v == 3) {
+        Serial.print(tekst);
+        Serial.println(a3);
+      }
+      if (v == 4) {
+        Serial.print(tekst);
+        Serial.println(a4);
+      }
+      bt = 0;
+    } else if (bt != 118) {
+      Serial.print("Du har tastet inn feil knapp, prøv igjen");
+    }
+  }
+
+
+}
