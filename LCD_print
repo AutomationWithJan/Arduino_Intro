@@ -1,0 +1,28 @@
+#include <LiquidCrystal.h> //inkluderer LCD biblioteket.
+
+const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+//definerer hvilke pinner som lcd skjermen bruker
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+//Initierer LCD skjermen
+
+int teller = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+  lcd.begin(16, 2);   // initierer LCD skjerm
+  lcd.clear();        //tømmer LCD skjerm for tekst
+  lcd.print("Starter opp");   //startmelding til brukeren
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  lcd.setCursor(0, 0);  //setter peker i displayet
+  lcd.print("           ");// tømmer displayet for tegn
+  lcd.setCursor(0, 0); //setter peker i displayet
+  lcd.print("Tallet er: ");
+  lcd.setCursor(12, 0);  //setter peker i displayet
+  lcd.print(teller);    //Printer tekst til LCD skjermen
+  teller = teller + 1;  //lager en tellevariabel
+  delay(1000);  //1sekund delay
+  lcd.setCursor(0, 1);    // setter peker i tegn 0 linje 1
+  lcd.print("Dette er gøy!");/
